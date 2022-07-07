@@ -27,6 +27,9 @@ class Engine extends SparkProcess with IOUtils {
       logger.info(s"Process Id: ${runtimeContext.getProcessId}")
       val config: Config = runtimeContext.getConfig
 
+      val devName:String = config.getString(ExampleConfigConstants.DevName)
+      logger.info(s">>> Hola ${devName}")
+
       val jwkDate: String = config.getString(ExampleConfigConstants.JwkDate)
 
       //Load inputs
@@ -54,7 +57,7 @@ class Engine extends SparkProcess with IOUtils {
 
       //Writing output (read conf file format)
       val customersPhonesConfig: Config = config.getConfig(ExampleConfigConstants.CustomersPhonesConfig)
-      write(outputDF,customersPhonesConfig)
+      ////write(outputDF,customersPhonesConfig)
 
     } match {
       case Success(_) => OK
